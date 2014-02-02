@@ -16,6 +16,7 @@
 /tmp
 
 # Ignore other unneeded files.
+git_heroku_ssh.txt
 database.yml
 doc/
 *.swp
