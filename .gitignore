@@ -16,8 +16,10 @@
 /tmp
 
 # Ignore other unneeded files.
+rails_tutorial_sublime_text/
 git_heroku_ssh.txt
 database.yml
+spec/xspec_helper.rb
 doc/
 *.swp
 *-

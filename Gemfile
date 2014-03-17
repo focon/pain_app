@@ -16,8 +16,10 @@ gem 'guard-rspec', '>=2.5.0'
 gem 'spork-rails', '>=4.0.0'
 gem 'childprocess', '>=0.3.6'
 gem 'guard-spork',  '>=1.5.0'
+gem 'rb-fsevent','>=0.4.3.1', :require => false 
+gem 'spork','>=0.9.0'
+gem 'growl','>=1.0.3'
 end
-
 # Use sqlite3 as the database for Active Record
 group :production do 
 gem 'pg', '>= 0.15.1'
@@ -27,8 +29,13 @@ gem 'rails3_serve_static_assets', github: 'heroku/rails3_serve_static_assets'
 end
 
 group :test do 
+gem 'sqlite3',     '>= 1.3.8'	
 gem 'selenium-webdriver', '>= 2.35.1'
 gem 'capybara', '>= 2.1.0'
+gem 'factory_girl_rails', '>=4.1.0'
+gem 'cucumber-rails', '>=1.2.1', :require => false
+gem 'database_cleaner', '>=0.7.0'
+gem 'launchy', '>=2.1.0'
 end
 
 # Use SCSS for stylesheets

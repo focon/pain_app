@@ -1,13 +1,25 @@
 
 <div class="center hero-unit">
+	<p> This hero-unit goes into  the container</p>
 <h1>Welcome to the Pain App</h1>
 <h2>
 This is the home page for the
 <a href= '#' >Pain App</a>
 application.
 </h2>
-<%= link_to "Sign up !", signup_path, class: "btn btn-large btn-primary" %>
+<p>The sign in facility is exclusively for use by 
+	personnel.</p>
+<%= link_to "Sign up", signup_path, class: "btn btn-large btn-primary" %>
 </div>
-<%= link_to image_tag("#", alt: "Rails"), '#' %>
-
-
+<p>This is below the hero-unit </p>
+<%= link_to image_tag("rails.jpg", size: "180x160", class: "pull-right" , alt: "Pains"), '#' %>
+	<ul>
+		<li>Firstxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.</li>
+		<li>Second.</li>
+		<li>Third.</li>
+	</ul>
+	<div>
+		<li>First.</li>
+		<li>Second.</li>
+		<li>Third.</li>
+	</div>
