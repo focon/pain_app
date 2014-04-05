@@ -22,7 +22,7 @@ require 'spec_helper'
 				expect(page).to have_selector('li', text: user.name)
 			    end
 				end
-		    # end
+		     end
 			
 
 		describe "delete links" do
@@ -46,7 +46,7 @@ require 'spec_helper'
 		end
 		end
 		end		
-	end
+	#end
 	    describe "profile page" do
 	
 			before { visit user_path(user) }
