@@ -54,8 +54,8 @@ class UsersController < ApplicationController
 
 		def user_params
 			params.require(:user).permit(:name, :email, :password,
-			:password_confirmation, :remember_token)
-			# added :remember_token
+			:password_confirmation)
+			# maybe add:remember_token
 		end
 
 		def signed_in_user

@@ -13,7 +13,7 @@ def signed_in?
 end
 
 def current_user=(user)
-	# @current_user = user
+	 @current_user = user
 end
 
 def current_user
@@ -37,7 +37,7 @@ end
 def sign_out
 	current_user.update_attribute(:remember_token,
     #User.encrypt(User.new_remember_token))
-    User.hash(User.new_remember_token))
+    								User.hash(User.new_remember_token))
      cookies.delete(:remember_token)
 	self.current_user = nil
 end
