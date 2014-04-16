@@ -69,7 +69,7 @@ describe "Authentication" do
 							it "should render the desired protected page" do
 							expect(page).to have_title('Edit user')
 						end
-					end
+					    end
 				end
 
 				describe "in the Users controller" do
@@ -91,11 +91,24 @@ describe "Authentication" do
 					end
 
 					        describe "visiting the user index" do
-          before { visit users_path }
-          it { should have_title('Sign in') }
-        end
-				
-			end
+					          before { visit users_path }
+					          it { should have_title('Sign in') }
+					        end
+				end
+
+
+				describe "in the Complications controller" do
+					describe "submitting to the create action" do
+						before { post complications_path }
+						specify { expect(response).to redirect_to(signin_path) }
+					end
+
+					describe "submitting to the destroy action" do
+						before { delete complication_path(FactoryGirl.create(:complication)) }
+						specify { expect(response).to redirect_to(signin_path) }
+					end
+				end
+			
     		
 			describe "as wrong user" do
 				let(:user) { FactoryGirl.create(:user) }
@@ -125,20 +138,8 @@ describe "Authentication" do
 						before { delete user_path(user) }
 						specify { expect(response).to redirect_to(root_url) }
 				    end
-			end
-		
+			#end
 
-			describe "when attempting to visit a protected page" do
-				before do
-					visit edit_user_path(user)
-					fill_in "Email", with: user.email
-					fill_in "Password", with: user.password
-					click_button "Sign in"
-				end
-				describe "after signing in" do
-					it "should render the desired protected page" do
-					expect(page).to have_title('Edit user')
-					end
 
 				    describe "when signing in again" do
 						before do
@@ -152,11 +153,7 @@ describe "Authentication" do
 						it "should render the default (profile) page" do
 						expect(page).to have_title(user.name)
 						end
-					end
-				end
-			end
-		end
-
+			end		end
     end
 end
-
+end

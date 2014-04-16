@@ -10,4 +10,9 @@ factory :admin do
 admin true
 end
 end
+
+factory :complication do
+content "Lorem ipsum"
+user
+end
 end

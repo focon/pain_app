@@ -16,8 +16,37 @@ it { should respond_to(:password_confirmation) }
 it { should respond_to(:remember_token) }
 it { should respond_to(:authenticate) }
 it { should respond_to(:admin) }
+it { should respond_to(:complications) }
+it { should respond_to(:feed) }
 it { should be_valid }
 it { should_not be_admin }
+
+
+
+describe "complication associations" do
+before { @user.save }
+let!(:older_complication) do
+FactoryGirl.create(:complication, user: @user, created_at: 1.day.ago)
+end
+let!(:newer_complication) do
+FactoryGirl.create(:complication, user: @user, created_at: 1.hour.ago)
+end
+
+describe "status" do
+# let(:unfollowed_post) do
+FactoryGirl.create(:complication, user: FactoryGirl.create(:user))
+end
+its(:feed) { should include(newer_complication) }
+its(:feed) { should include(older_complication) }
+# its(:feed) { should_not include(unfollowed_post) }
+# end
+end	
+
+
+
+
+
+
 describe "with admin attribute set to 'true'" do
 before do
 @user.save!
@@ -105,6 +134,29 @@ end
 describe "remember token" do
 before { @user.save }
 its(:remember_token) { should_not be_blank }
+end
+
+
+describe "complication associations" do
+before { @user.save }
+let!(:older_complication) do	
+FactoryGirl.create(:complication, user: @user, created_at: 1.day.ago)
+end
+let!(:newer_complication) do
+FactoryGirl.create(:complication, user: @user, created_at: 1.hour.ago)
+end
+it "should have the right complications in the right order" do
+expect(@user.complications.to_a).to eq [newer_complication, older_complication]
+end
+
+it "should destroy associated complications" do
+complications = @user.complications.to_a
+@user.destroy
+expect(complications).not_to be_empty
+complications.each do |complication|
+expect(Complication.where(id: complication.id)).to be_empty
+end
+end
 end
 
 end

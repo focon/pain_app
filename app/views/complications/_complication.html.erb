@@ -1,0 +1,11 @@
+<li>
+<span class="content"><%= complication.content %></span>
+<span class="timestamp">
+Posted <%= time_ago_in_words(complication.created_at) %> ago.
+</span>
+<% if current_user?(complication.user) %>
+<%= link_to "delete", complication, method: :delete,
+data: { confirm: "You sure?" },
+title: complication.content %>
+<% end %>
+</li>

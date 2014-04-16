@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+	has_many :complications, dependent: :destroy
 	before_save { self.email = email.downcase }
 	before_create :create_remember_token
 	
@@ -19,6 +20,12 @@ def User.hash(token)
 # def User.encrypt(token)
 Digest::SHA1.hexdigest(token.to_s)
 end
+
+
+# def feed may be a load of rubbish
+  def feed
+   self.complications
+  end
 
 private
 
